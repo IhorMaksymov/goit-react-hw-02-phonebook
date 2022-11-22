@@ -1,37 +1,16 @@
 import PropTypes from 'prop-types';
-import { Formik, Form, Field } from 'formik';
-import styled from 'styled-components';
+import { Formik, Field } from 'formik';
 import * as yup from 'yup';
 
+import { FieldForm, Label } from './ContactFormStyled';
 
 const schema = yup.object().shape({
     name: yup.string().required(),
     number: yup.string().required(),
 })
 
-const FieldForm = styled(Form)`
-    border: 1px solid ${p => p.theme.colors.brColors};
-    padding: ${p => p.theme.space[4]}px;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: ${p => p.theme.space[4]}px;
-`;
-
-const Label = styled.label`
-    display: flex;
-    flex-direction: column;
-    margin-bottom: ${p => p.theme.space[3]}px;
-`;
-
-const Input = styled(Field)`
-
-`;
-
-
 export const ContactForm = ({ contacts }) => {
 
-    
-    
     const handleSubmit = (values, {resetForm}) => {
         contacts(values);
         resetForm();
@@ -46,7 +25,7 @@ export const ContactForm = ({ contacts }) => {
             <FieldForm autoComplete='off'>
             <Label htmlFor="">
                 Name
-                <Input
+                <Field
                     type="text"
                     name="name"
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
